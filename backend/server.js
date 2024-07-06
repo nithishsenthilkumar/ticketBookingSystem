@@ -22,7 +22,9 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
-
+app.get("/", (req, res) => {
+  res.json({ data: "hello" });
+});
 
 
 app.listen(port, () => {
