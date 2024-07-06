@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 const app = express();
 const port = 8000;
 
+
 // Middleware
 app.use(cors({ origin: "" }));
 app.use(express.json());
+
 
 // Database connection
 const config = require('./config.json');
@@ -22,8 +24,21 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
+
+
+//jwt
+const jwt = require('jsonwebtoken');
+const { authenticateToken } = require('./utilities');
+
+//homeapi
+app.get("/", (req, res) => {
+  res.json({ data: "hello" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
 });
+
+
 
 module.exports=app;
