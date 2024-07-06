@@ -1,20 +1,13 @@
 const mongoose = require("mongoose");
 
 const seatSchema = new mongoose.Schema({
-  seatId: { type: String, required: true },
+  seatId: { type: Number, required: true },
   isFilled: { type: Boolean, default: false },
 });
 
 const showTimingSchema = new mongoose.Schema({
   showTime: { type: Date, required: true },
-  seats: {
-    type: seatSchema,
-    default: () =>
-      Array.from({ length: 70 }, (_, i) => ({
-        seatId: `${i + 1}`,
-        isFilled: false,
-    })),
-  },
+  seats: { type: seatSchema}
 });
 
 const theatreSchema = new mongoose.Schema({
