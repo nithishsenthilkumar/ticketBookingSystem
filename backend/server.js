@@ -13,7 +13,6 @@ app.use(express.json());
 // Database connection
 const config = require('./config.json');
 const url = config.connectionString;
-
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -23,20 +22,11 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
-mongoose.connection.on('connected', () => {
-  console.log('MongoDB connected');
-});
 
-mongoose.connection.on('error', (err) => {
-  console.log('MongoDB connection error:', err.message);
-});
 
-mongoose.connection.on('disconnected', () => {
-  console.log('MongoDB disconnected');
-});
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
 });
 
-//
+module.exports=app;
