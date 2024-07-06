@@ -43,15 +43,26 @@ app.post('/create-account',(req,res)=>{
 
 
 //Movies
-app.post('/movies',(req,res)=>{
+app.post('/movies',async(req,res)=>{
   const {movieId,name,duration,director}=req.body;
 
-  const movie=new Movies({
-    movieId,
-    name,
-    duration,
-    director,
-  })
+  try{
+    const movie=new Movies({
+      movieId,
+      name,
+      duration,
+      director,
+    })
+
+    await movie.save(); 
+    return res.json({
+      error:'false',
+      movie,
+      message:"Movie added successfully"
+    })
+  }catch(error){
+    console.log("Error:",error);
+  }
 })
 
 app.listen(port, () => {
