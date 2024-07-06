@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-//
 const theatreSchema = new mongoose.Schema({
     id:{
         type: Number,

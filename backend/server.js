@@ -25,6 +25,7 @@ mongoose.connect(url, {
 });
 
 
+
 //jwt
 const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('./utilities');
@@ -33,7 +34,6 @@ const { authenticateToken } = require('./utilities');
 app.get("/", (req, res) => {
   res.json({ data: "hello" });
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
