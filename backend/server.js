@@ -22,6 +22,12 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
 });
+
+
+module.exports=app;
