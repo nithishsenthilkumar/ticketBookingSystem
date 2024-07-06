@@ -1,31 +1,39 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
 require("dotenv").config();
 
-const port = process.env.PORT || 3000;
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const app = express();
+const port = 8000;
 
-//Middleware
-app.use(cors);
+// Middleware
+app.use(cors({ origin: "" }));
 app.use(express.json());
 
-//Connet with MongoDB
-const mongoose = require("mongoose");
-const router = require("./Routes/Routes");
-const url = process.env.MONGODB_URI;
+// Database connection
+const config = require('./config.json');
+const url = config.connectionString;
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(url);
-    console.log("Connection successfully with mongoDB");
-  } catch (error) {
-    console.log("Connection error: ", error.message);
-  }
-};
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log("Connection successfully with MongoDB");
+}).catch((error) => {
+  console.log("Connection error: ", error.message);
+});
 
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB connected');
+});
 
+mongoose.connection.on('error', (err) => {
+  console.log('MongoDB connection error:', err.message);
+});
 
-connectDB();
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
