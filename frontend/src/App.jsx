@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     <h2>This is booking management system</h2>
+     <h2>This is booking management</h2>
     </>
   )
 }
