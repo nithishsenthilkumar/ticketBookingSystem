@@ -40,9 +40,12 @@ app.post('/create-account',(req,res)=>{
 
 })
 
+//Bookings Api
+app.post('/book-tickets',(req,res)=>{
+  
+})
 
-
-//Movies
+//Movies Api
 app.post('/movies',async(req,res)=>{
   const {movieId,name,duration,director}=req.body;
 
