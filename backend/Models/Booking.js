@@ -4,7 +4,7 @@ const bookingSchema = new mongoose.Schema({
     userId: {type: String, require: true},
     bookedData: {type: Date, default: Date.now, required: true},
     status: {type: String},
-    booked_at: {type: Date, default: Date.now},
+    bookedAt: {type: Date, default: Date.now},
     totalAmount: {type: Number, required: true}
 });
 

@@ -25,6 +25,7 @@ mongoose.connect(url, {
 });
 
 const Movies=require('./Models/Movies');
+const Booking = require("./Models/Booking");
 
 //jwt
 const jwt = require('jsonwebtoken');
@@ -41,8 +42,27 @@ app.post('/create-account',(req,res)=>{
 })
 
 //Bookings Api
-app.post('/book-tickets',(req,res)=>{
-  
+app.post('/book-tickets',async(req,res)=>{
+  const {userId,status,bookedAt,totalAmount}=req.body;
+
+  try {
+    const booking = new Booking({
+      userId,
+      status,
+      bookedAt,
+      totalAmount
+    })
+
+    await booking.save();
+    return res.json({
+      error: 'false',
+      booking,
+      message:"Booking added successfully"
+    })
+    
+  } catch (error) {
+    console.log("Error:",error);
+  }
 })
 
 //Movies Api
