@@ -24,7 +24,7 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
-
+const Movies=require('./Models/Movies');
 
 //jwt
 const jwt = require('jsonwebtoken');
@@ -34,6 +34,25 @@ const { authenticateToken } = require('./utilities');
 app.get("/", (req, res) => {
   res.json({ data: "hello" });
 });
+
+//User Create
+app.post('/create-account',(req,res)=>{
+
+})
+
+
+
+//Movies
+app.post('/movies',(req,res)=>{
+  const {movieId,name,duration,director}=req.body;
+
+  const movie=new Movies({
+    movieId,
+    name,
+    duration,
+    director,
+  })
+})
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
