@@ -26,6 +26,7 @@ mongoose.connect(url, {
 
 const Movies=require('./Models/Movies');
 const Booking = require("./Models/Booking");
+const Theatres=require('./Models/Theatre');
 
 //jwt
 const jwt = require('jsonwebtoken');
@@ -93,7 +94,7 @@ app.post('/theatres', async (req, res) => {
   try {
     const { id, name, location, showTimings } = req.body;
 
-    const newTheatre = new Theatre({
+    const newTheatre = new Theatres({
       id,
       name,
       location,
