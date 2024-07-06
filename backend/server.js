@@ -10,6 +10,7 @@ const port = 8000;
 app.use(cors({ origin: "" }));
 app.use(express.json());
 
+
 // Database connection
 const config = require('./config.json');
 const url = config.connectionString;
@@ -22,6 +23,11 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
+//jwt
+const jwt = require('jsonwebtoken');
+const { authenticateToken } = require('./utilities');
+
+//homeapi
 app.get("/", (req, res) => {
   res.json({ data: "hello" });
 });
@@ -30,5 +36,7 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
 });
+
+
 
 module.exports=app;
