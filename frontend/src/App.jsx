@@ -10,6 +10,7 @@ function App() {
     <>
      <h2>This is booking management</h2>
      <h2>hari</h2>
+     <h3>niti</h3>
      
     </>
   )
