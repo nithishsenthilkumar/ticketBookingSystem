@@ -13,7 +13,7 @@ const showTimingSchema = new mongoose.Schema({
 const theatreSchema = new mongoose.Schema({
   id: { type: Number, required: true, unique: true },
   name: { type: String, required: true },
-  location: { type: Location, required: true },
+  location: { type: String, required: true },
   showTiming: { type: showTimingSchema },
 });
 

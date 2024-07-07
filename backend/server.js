@@ -26,6 +26,7 @@ mongoose.connect(url, {
 
 const Movies=require('./Models/Movies');
 const Booking = require("./Models/Booking");
+const Theatres=require('./Models/Theatre');
 
 //jwt
 const jwt = require('jsonwebtoken');
@@ -87,6 +88,32 @@ app.post('/movies',async(req,res)=>{
     console.log("Error:",error);
   }
 })
+
+//Theatres
+app.post('/theatres', async (req, res) => {
+  try {
+    const { id, name, location, showTimings } = req.body;
+
+    const newTheatre = new Theatres({
+      id,
+      name,
+      location,
+      showTimings: showTimings.map(show => ({
+        showTime: show.showTime,
+        seats: Array.from({ length: 70 }, (_, i) => ({
+          seatId: i + 1,
+          isFilled: false
+        }))
+      }))
+    });
+
+    await newTheatre.save();
+    res.status(201).json(newTheatre);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
