@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import background from "../Asserts/background.jpg";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -39,9 +40,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-300">
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Create Profile</h2>
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="relative bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-title mb-6 text-center">Create Profile</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700">Username</label>
