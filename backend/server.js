@@ -8,7 +8,7 @@ const port = 8000;
 
 
 // Middleware
-app.use(cors({ origin: "" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 
@@ -24,6 +24,7 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
+const User =require('./Models/User');
 const Movies=require('./Models/Movies');
 const Booking = require("./Models/Booking");
 const Theatres=require('./Models/Theatre');
@@ -38,8 +39,21 @@ app.get("/", (req, res) => {
 });
 
 //User Create
-app.post('/create-account',(req,res)=>{
+app.post('/create-account',async(req,res)=>{
+    const newUser = new User(req.body);
+  // const isUser = await User.findOne({ email: email });
+    await newUser.save(); 
 
+    const accessToken = jwt.sign({ newUser }, process.env.ACCESS_PRIVATE_KEY, {
+        expiresIn: "36000m"
+    });
+
+    return res.json({
+        error: false,
+        newUser,
+        accessToken,
+        message: "Registration successful",
+    });
 })
 
 //Bookings Api

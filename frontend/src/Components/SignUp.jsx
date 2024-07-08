@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import background from "../assets/background.jpg";
+import axiosInstance from "../utils/axiosInstance";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const Signup = () => {
       country: "",
     },
   });
-
+  const [error,setError]=useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name.includes("address.")) {
@@ -34,9 +35,27 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await axiosInstance.post('/create-account', formData);
+      // console.log(response.data);
+      if(response.data&&response.data.error){
+        setError(response.data.message);
+        return;
+      }
+
+      if(response.data&&response.data.accessToken){
+        localStorage.setItem("token",response.data.accessToken);
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      if(error.response&&error.response.data&&error.response.data.message){
+        setError(error.response.data.message);
+    }else{
+        setError("An unexpected error occured");
+    } 
+    }
   };
 
   return (
@@ -132,6 +151,7 @@ const Signup = () => {
               className="w-full p-2 border border-gray-300 rounded mt-1"
             />
           </div>
+          {error&& <p className='text-red-500 text-xs pb-1'>{error}</p>}   
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-200"
