@@ -11,7 +11,6 @@ node_modules
 .env
 dist
 dist-ssr
-config.json
 *.local
 
 # Editor directories and files
@@ -25,3 +24,5 @@ config.json
 *.sln
 *.sw?
 
+# .gitignore
+config.json
