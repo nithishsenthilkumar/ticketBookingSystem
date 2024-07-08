@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import background from "../assets/background.jpg";
-import axiosInstance from "../utils/axiosInstance";
+import background from "../../assets/background.jpg";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
