@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import background from "../Asserts/background.jpg";
+import background from "../assets/background.jpg";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
