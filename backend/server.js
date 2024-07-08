@@ -98,13 +98,6 @@ app.post('/theatres', async (req, res) => {
       id,
       name,
       location,
-      showTimings: showTimings.map(show => ({
-        showTime: show.showTime,
-        seats: Array.from({ length: 70 }, (_, i) => ({
-          seatId: i + 1,
-          isFilled: false
-        }))
-      }))
     });
 
     await newTheatre.save();
