@@ -41,7 +41,29 @@ app.get("/", (req, res) => {
 //User Create
 app.post('/create-account',async(req,res)=>{
     const newUser = new User(req.body);
-  // const isUser = await User.findOne({ email: email });
+    if(newUser.password.length<8){
+      return res.status(200).json({
+        error:true,
+        message:"Password must be atleast 8 characters"
+      })
+    }
+    //check user phone number exist
+    const isUser=await User.findOne({phonenumber : newUser.phonenumber});
+    if(isUser){
+      return res.status(201).json({
+        error:true,
+        message:"Phone Number already exists",
+      })
+    }
+    //check User Mail Exists
+    const checkEmail=await User.findOne({email : newUser.email});
+    if(checkEmail){
+      return res.status(201).json({
+        error:true,
+        message:"Email already exists",
+      })
+    }
+
     await newUser.save(); 
 
     const accessToken = jwt.sign({ newUser }, process.env.ACCESS_PRIVATE_KEY, {
@@ -55,6 +77,9 @@ app.post('/create-account',async(req,res)=>{
         message: "Registration successful",
     });
 })
+
+//Login
+
 
 //Bookings Api
 app.post('/book-tickets',async(req,res)=>{

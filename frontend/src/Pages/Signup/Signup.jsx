@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import background from "../../assets/background.jpg";
 import axiosInstance from "../../utils/axiosInstance";
 
 const Signup = () => {
+  
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -34,7 +36,7 @@ const Signup = () => {
       });
     }
   };
-
+  const navigate=useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
