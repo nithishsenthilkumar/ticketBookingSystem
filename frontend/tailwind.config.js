@@ -2,11 +2,7 @@
 export default {
   content: [],
   theme: {
-    extend: {
-      fontFamily: {
-        title: ["Playfair Display", "serif"],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
