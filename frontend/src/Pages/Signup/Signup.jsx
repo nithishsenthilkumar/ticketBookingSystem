@@ -77,7 +77,7 @@ const Signup = () => {
             className="border-slate-400 border-l-8 rounded-l-full object-cover w-full"
           />
         </div>
-        <div className="relative bg-slate-400 p-12 shadow-md w-full max-w-md rounded-lg md:rounded-r-xl md:rounded-none">
+        <div className="relative bg-slate-400 p-12 shadow-md w-full max-w-md rounded-lg md:rounded-r-lg md:rounded-none">
           <h2 className="text-2xl font-head font-bold tracking-wider font-title mb-6 text-center">
             CREATE PROFILE
           </h2>
