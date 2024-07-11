@@ -8,7 +8,7 @@ const port = 8000;
 
 
 // Middleware
-app.use(cors({ origin: "" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 
@@ -24,6 +24,7 @@ mongoose.connect(url, {
   console.log("Connection error: ", error.message);
 });
 
+const User =require('./Models/User');
 const Movies=require('./Models/Movies');
 const Booking = require("./Models/Booking");
 const Theatres=require('./Models/Theatre');
@@ -38,9 +39,47 @@ app.get("/", (req, res) => {
 });
 
 //User Create
-app.post('/create-account',(req,res)=>{
+app.post('/create-account',async(req,res)=>{
+    const newUser = new User(req.body);
+    if(newUser.password.length<8){
+      return res.status(200).json({
+        error:true,
+        message:"Password must be atleast 8 characters"
+      })
+    }
+    //check user phone number exist
+    const isUser=await User.findOne({phonenumber : newUser.phonenumber});
+    if(isUser){
+      return res.status(201).json({
+        error:true,
+        message:"Phone Number already exists",
+      })
+    }
+    //check User Mail Exists
+    const checkEmail=await User.findOne({email : newUser.email});
+    if(checkEmail){
+      return res.status(201).json({
+        error:true,
+        message:"Email already exists",
+      })
+    }
 
+    await newUser.save(); 
+
+    const accessToken = jwt.sign({ newUser }, process.env.ACCESS_PRIVATE_KEY, {
+        expiresIn: "36000m"
+    });
+
+    return res.json({
+        error: false,
+        newUser,
+        accessToken,
+        message: "Registration successful",
+    });
 })
+
+//Login
+
 
 //Bookings Api
 app.post('/book-tickets',async(req,res)=>{
@@ -98,13 +137,6 @@ app.post('/theatres', async (req, res) => {
       id,
       name,
       location,
-      showTimings: showTimings.map(show => ({
-        showTime: show.showTime,
-        seats: Array.from({ length: 70 }, (_, i) => ({
-          seatId: i + 1,
-          isFilled: false
-        }))
-      }))
     });
 
     await newTheatre.save();
