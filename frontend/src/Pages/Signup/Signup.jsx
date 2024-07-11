@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import background from "../../assets/background2.jpg";
+import background from "../../assets/background3.jpg";
 import side from "../../assets/side.jpg";
 
 const Signup = () => {
@@ -69,104 +69,101 @@ const Signup = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="absolute h-screen inset-0 bg-black opacity-40"></div>
-      <div
-        className="relative rounded-xl shadow-md w-full max-w-4xl flex bg-white bg-opacity-10"
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-      >
-        <div className="hidden md:flex w-1/2">
+      <div className="w-full max-w-4xl flex p-12">
+        <div className="hidden md:flex w-full">
           <img
             src={side}
             alt="side"
-            className="object-cover w-full"
+            className="border-slate-400 border-l-8 rounded-l-full object-cover w-full"
           />
         </div>
-        <div className="relative bg-white p-8 shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-title mb-6 text-center">
-            Create Profile
+        <div className="relative bg-slate-400 p-12 shadow-md w-full max-w-md rounded-lg md:rounded-r-xl md:rounded-none">
+          <h2 className="text-2xl font-head font-bold tracking-wider font-title mb-6 text-center">
+            CREATE PROFILE
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700">Username</label>
               <input
                 type="text"
                 name="username"
                 value={formData.username}
+                placeholder="username"
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Email</label>
               <input
                 type="email"
                 name="email"
+                placeholder="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Phone Number</label>
               <input
                 type="text"
                 name="phonenumber"
+                placeholder="phone number"
                 value={formData.phonenumber}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700">Password</label>
               <input
                 type="password"
                 name="password"
+                placeholder="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Street</label>
               <input
                 type="text"
                 name="address.street"
+                placeholder="street"
                 value={formData.address.street}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">City</label>
               <input
                 type="text"
                 name="address.city"
+                placeholder="city"
                 value={formData.address.city}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">State</label>
               <input
                 type="text"
                 name="address.state"
+                placeholder="state"
                 value={formData.address.state}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Country</label>
               <input
                 type="text"
                 name="address.country"
+                placeholder="country"
                 value={formData.address.country}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
               />
             </div>
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
