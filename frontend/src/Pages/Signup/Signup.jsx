@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import background from "../../assets/background3.jpg";
 import side from "../../assets/side.jpg";
 
 const Signup = () => {
@@ -86,7 +85,7 @@ const Signup = () => {
                 value={formData.username}
                 placeholder="username"
                 onChange={handleChange}
-                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded hover:text-lg border-b-2 border-black transition-all duration-300 ease-in-out focus:ring-2 focus:ring-transparent focus:outline-none"
+                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
                 required
               />
             </div>
@@ -97,7 +96,7 @@ const Signup = () => {
                 placeholder="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
                 required
               />
             </div>
@@ -108,7 +107,7 @@ const Signup = () => {
                 placeholder="phone number"
                 value={formData.phonenumber}
                 onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
                 required
               />
             </div>
@@ -119,7 +118,7 @@ const Signup = () => {
                 placeholder="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
                 required
               />
             </div>
@@ -130,7 +129,8 @@ const Signup = () => {
                 placeholder="street"
                 value={formData.address.street}
                 onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
+                required
               />
             </div>
             <div className="mb-4">
@@ -139,8 +139,8 @@ const Signup = () => {
                 name="address.city"
                 placeholder="city"
                 value={formData.address.city}
-                onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                onChange={handleChange}className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
+                required
               />
             </div>
             <div className="mb-4">
@@ -149,8 +149,8 @@ const Signup = () => {
                 name="address.state"
                 placeholder="state"
                 value={formData.address.state}
-                onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                onChange={handleChange}className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
+                required
               />
             </div>
             <div className="mb-4">
@@ -158,9 +158,8 @@ const Signup = () => {
                 type="text"
                 name="address.country"
                 placeholder="country"
-                value={formData.address.country}
-                onChange={handleChange}
-                className="w-full font-semibold tracking-wide text-base p-2 border border-gray-300 rounded mt-1"
+                value={formData.address.country}onChange={handleChange}className="w-full text-black font-semibold tracking-wide text-base border-b-2 border-inherit p-2 rounded focus:outline-none"
+                required
               />
             </div>
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}

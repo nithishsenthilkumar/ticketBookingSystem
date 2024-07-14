@@ -1,12 +1,10 @@
 import React from "react";
-import background from "../../assets/background3.jpg";
 import side from "../../assets/side.jpg";
 
 const Login = () => {
   return (
     <div
       className="h-screen flex items-center justify-center bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${background})` }}
     >
       <div className="absolute h-screen inset-0 bg-black opacity-40"></div>
       <div className="w-full max-w-4xl flex p-12">
